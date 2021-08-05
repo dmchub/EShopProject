@@ -1,7 +1,15 @@
 package com.example.eshopproject.domain;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Article {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String title;
     private int stock;
@@ -46,5 +54,7 @@ public class Article {
         return (this.getStock() > 0) && (amount <= this.getStock());
     }
 
-    
+    public void decreaseStock(int amount){
+        this.stock -= amount;
+    }
 }
